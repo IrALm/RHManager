@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Employés</title>
+    <!-- Ajouter le lien vers Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Liste des Employés</h1>
+
+    <!-- Tableau des employés -->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Domaine</th>
+            <th>Salaire</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Boucle pour afficher chaque employé -->
+        <tr th:each="employe : ${employés}">
+            <td th:text="${employe.nom}"></td>
+            <td th:text="${employe.prenom}"></td>
+            <td th:text="${employe.domaine}"></td>
+            <td th:text="${employe.salaire}"></td>
+            <td>
+                <!-- Ajouter des liens pour la modification et la suppression -->
+                <a th:href="@{/employe/modifier/{id}(id=${employe.id})}" class="btn btn-warning btn-sm">Modifier</a>
+                <a th:href="@{/employe/supprimer/{id}(id=${employe.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employé ?')">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/employe/nouveau" class="btn btn-success mb-4">Ajouter un nouvel employé</a>
+</div>
+
+<!-- Ajouter le script Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
